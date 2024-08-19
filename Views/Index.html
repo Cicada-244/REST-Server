@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="myform">
+
+
+        <label for="myform_message">Message</label>
+        <input type="text" name="message" id="myform_message" rows="3"></input>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+
+</body>
+
+</html>
+<script>
+
+    const myForm = document.getElementById('myform');
+
+
+
+    myForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        const formDataObject = Object.fromEntries(formData.entries());
+
+        const jsonString = JSON.stringify(formDataObject);
+
+        fetch('http://localhost:3000/messages', {
+            method: 'post',
+
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: jsonString
+        }).then((response) => {
+            return response.text()
+        }).then((text) => {
+            console.log(text)
+        }).catch((error) => {
+            console.error(error)
+        })
+    });
+
+    console.log()
+
+</script>
