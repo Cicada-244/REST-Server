@@ -8,12 +8,12 @@
 </head>
 
 <body>
-    <form id="myform">
+    <form id="LogIn">
 
-        <label for="myform_message">Message</label>
-        <input type="text" name="message" id="myform_message" rows="3"></input>
+        <label for="myform_message">UserName</label>
+        <input type="text" name="userName" id="myform_message" rows="3"></input>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">LogIn</button>
     </form>
     </div>
 
@@ -24,7 +24,7 @@
 </html>
 <script>
 
-    const myForm = document.getElementById('myform');
+    const myForm = document.getElementById('LogIn');
 
 
 
@@ -37,7 +37,7 @@
 
         const jsonString = JSON.stringify(formDataObject);
 
-        fetch('http://localhost:3000/api/messages/send', {
+        fetch('http://localhost:3000/api/login/authorise', {
             method: 'post',
 
             headers: {

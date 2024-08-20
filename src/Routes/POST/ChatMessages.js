@@ -11,7 +11,7 @@ app.use(express.json());
 const messages = [];
 
 //Add Message sent from client to messages array 
-router.post('/messages', (req, res) => {
+router.post('/send', (req, res) => {
 
     messages.push(req.body);
 
@@ -23,7 +23,7 @@ router.post('/messages', (req, res) => {
 })
 
 
-router.get('/messages', (req, res) => {
+router.get('/send', (req, res) => {
     res.status(201).send(json.parse(messages))
 })
 

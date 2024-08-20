@@ -1,5 +1,20 @@
+const express = require('express');
 const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
+require('dotenv').config({ path: './../../.env' });
+const router = express.Router();
 
-crypto.randomBytes(64).toString('hex')
+function generateAccessToken(userName) {
+    return jwt.sign({ userName }, process.env.TOKEN_SECRET, { expiresIn: "1h" });
+}
 
+router.post('/authorise', (req, res) => {
+
+    console.log(req.body.userName)
+
+    const token = generateAccessToken(req.body.userName)
+
+    res.status(200).json(token)
+
+})
+
+module.exports = router;
